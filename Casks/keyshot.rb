@@ -1,12 +1,15 @@
 cask 'keyshot' do
-  version '8.2.80'
-  sha256 'c8df6bca2c0c89295ebcd109dd7b1a6b8ec5f58907b7ee6120a77b3b06d4bef9'
+  version '9.0.286'
+  sha256 '618031aae2fbceea216c6b740266256ca6b52d4198f0d9a13e2c0003ba700d4b'
 
-  url "https://download.keyshot.com/keyshot8/keyshot_mac64_#{version}.pkg"
+  url "https://download.keyshot.com/keyshot#{version.major}/keyshot_mac64_#{version}.pkg"
   name 'KeyShot'
   homepage 'https://www.keyshot.com/'
 
+  depends_on macos: '>= :sierra'
+
   pkg "keyshot_mac64_#{version}.pkg"
 
-  uninstall pkgutil: "com.luxion.pkg.keyshot#{version.major}.*"
+  uninstall pkgutil: "com.luxion.pkg.keyshot#{version.major}.*",
+            delete:  "/Applications/KeyShot#{version.major}.app"
 end
